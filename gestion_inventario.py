@@ -71,10 +71,23 @@ def fn_ProductosAReponer_lst(productos_lst):
     a_reponer_lst = []
 
     for producto_dic in productos_lst:
+        
         bajo_bool = producto_dic["stock"] <= producto_dic["minimo"]
 
-        if bajo_bool or not producto_dic["pendiente"]:
-            a_reponer_lst.append(producto_dic["nombre"])
+        if bajo_bool == True:
+
+            #Crear lista para añadir los productos con cantidad baja
+            productos_bajos_lst = []
+
+            #Añadimos el producto con bajo stock a la lista de productos bajos
+            productos_bajos_lst.append(producto_dic)
+
+            #Recorremos el producto dentro de la lista de productos bajos en stock
+            for producto_bajo_dic in productos_bajos_lst:
+
+                #En caso de que ese producto no este pedido lo añadiremos a la lista a reponer
+                if producto_bajo_dic["pendiente"] == False:
+                    a_reponer_lst.append(producto_dic["nombre"])
 
     return a_reponer_lst
 
