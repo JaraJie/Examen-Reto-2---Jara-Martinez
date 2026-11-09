@@ -97,6 +97,10 @@ def fn_RegistrarIncidencia_lst(mensaje_str, historial_lst=[]):
     Añade una incidencia a un historial y lo devuelve.
     Si no se indica ningún historial, se empieza uno nuevo (vacío).
     """
+
+    #Las incidencias deben guardarse en su lugar correspondiente (norte/sur),
+    #pero se guardan en la misma lista
+    
     historial_lst.append(mensaje_str)
 
     return historial_lst
