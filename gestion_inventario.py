@@ -13,11 +13,12 @@ def fn_EliminarAgotados_lst(productos_lst):
     Elimina del inventario los productos con stock 0
     y devuelve la lista de productos que quedan.
     """
+
     for producto_dic in productos_lst:
-        if producto_dic["stock"] == 0:
+        if producto_dic["stock"] == 0: #No me esta leyendo el monitor
             productos_lst.remove(producto_dic)
 
-    return productos_lst
+    return productos_lst #Devuelve una lista de 5 productos disponibles cuando son 4
 
 
 def fn_ValorPorCategoria_dic(productos_lst):
@@ -30,7 +31,7 @@ def fn_ValorPorCategoria_dic(productos_lst):
     for producto_dic in productos_lst:
         categoria_str = producto_dic["categoria"]
         precio_fl = producto_dic["precio"]
-        unidades_int = producto_dic["minimo"]
+        unidades_int = producto_dic["stock"] #Las unidadar deben equivaler a lo que hay en stock. Cambiar producto_dic["minimo"] por producto_dic["stock"]
         valor_fl = precio_fl * unidades_int
 
         valores_dic[categoria_str] = valores_dic.get(categoria_str, 0) + valor_fl
@@ -45,6 +46,9 @@ def fn_ClasificarStock_str(stock_int, minimo_int):
     - 'BAJO': stock igual o inferior al mínimo.
     - 'OK': stock por encima del mínimo.
     """
+
+    #Falta el ratón
+
     if stock_int == 0:
         estado_str = "AGOTADO"
     elif stock_int <= minimo_int:
